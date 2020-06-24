@@ -20,6 +20,7 @@ class NotesController < ApplicationController
 
   def delete
     note = current_user.notes.find_by(id: params[:id])
+    note.destroy unless note.nil?
     redirect_to dashboard_path
   end
 
