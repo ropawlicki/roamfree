@@ -40,7 +40,7 @@ gem 'devise', '~> 4.7.2'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'httparty', '~> 0.17.3'
-gem 'will_paginate', '~> 3.1.6'
+gem 'figaro', '~> 1.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

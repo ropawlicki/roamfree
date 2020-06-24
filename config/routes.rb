@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+    authenticated :user do
+      root 'notes#dashboard', as: :authenticated_root
+    end
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/dashboard', to: 'notes#dashboard'
+  post 'notes/create'
+  delete 'notes/delete'
+  get 'notes/edit'
+  put 'notes/update'
 end

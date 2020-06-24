@@ -1,0 +1,7 @@
+<%= form_with(url: notes_update_path, method: :put) do |f| %>
+  <%= f.text_field :city, placeholder: "City", value: @note.city %>
+  <%= f.text_field :temperature, placeholder: "Temperature", value: @note.temperature %>
+  <%= f.text_area :note_text,  placeholder: "Note text", value: @note.note_text  %>
+  <%= f.hidden_field :note_id, value: @note.id %>
+  <%= f.submit "Save" %>
+<% end %>

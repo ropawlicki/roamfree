@@ -1,0 +1,9 @@
+<% flash.each do |type, msg| %>
+  <% if msg.class == String %>
+    <%= msg %>
+  <% else %>
+    <% msg.each do |m| %>
+        <%= m%>
+    <% end %>
+  <% end %>
+<% end %>

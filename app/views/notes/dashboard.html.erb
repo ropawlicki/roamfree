@@ -1,0 +1,5 @@
+Hi <%= current_user.first_name %>, how was your trip today?
+
+<%= render "new_note_form" %>
+
+<%= render partial: "note", collection: @notes %>
