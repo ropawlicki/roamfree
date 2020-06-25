@@ -4,9 +4,9 @@
       <%= note.created_at.strftime("%d.%m.%Y") %>
     </div>
     <div class="col-6 text-left">
-      <%= note.city %>, <%= note.temperature %> 
+      <%= note.city %>
       <% unless note.temperature.nil? %>
-        <span>&#176;</span>
+        ,<span>&#176;</span> <%= note.city %>, <%= note.temperature %> 
       <% end %>
     </div>
     <div class="col-3 text-right">
