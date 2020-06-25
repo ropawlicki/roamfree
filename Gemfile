@@ -41,7 +41,7 @@ gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'httparty', '~> 0.17.3'
 gem 'figaro', '~> 1.2.0'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails', '~> 4.3.3'
 
 group :development, :test do
