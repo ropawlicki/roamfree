@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get '/dashboard', to: 'notes#dashboard'
-  post 'notes/create'
-  delete 'notes/delete'
-  get 'notes/edit'
-  put 'notes/update'
+  post 'notes/create', to: 'notes#create', as: :create_note
+  delete 'notes/:id/delete', to: 'notes#delete', as: :delete_note
+  get 'notes/:id/edit', to: 'notes#edit', as: :edit_note
+  patch 'notes/:id', to: 'notes#update', as: :update_note
 end

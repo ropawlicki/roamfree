@@ -1,13 +1,14 @@
 class NotesController < ApplicationController
+  before_action :check_ownership, except: [:dashboard, :create]
 
   def dashboard
     @notes = current_user.notes.order(created_at: :desc)
   end
 
   def create
-    @note = current_user.notes.new(note_params)
+    @note = current_user.notes.new(create_params)
     if @note.valid?
-      @note.temperature = TemperatureFetch.call(note_params.fetch(:city))
+      @note.temperature = TemperatureFetch.call(@note.city)
       if @note.temperature.nil?
         flash[:notice] = "Couldn't get temperature for your location, you can set it by editing the note."
       end
@@ -19,31 +20,40 @@ class NotesController < ApplicationController
   end
 
   def delete
-    note = current_user.notes.find_by(id: params[:id])
-    note.destroy unless note.nil?
+    note = Note.destroy(params[:id])
     redirect_to dashboard_path
   end
 
   def edit
-    @note = current_user.notes.find(params[:id])
+    @note = Note.find(params[:id])
   end
 
   def update
-    note_id = params["note_id"]
-    @note = current_user.notes.find(note_id)
-    if @note.update(note_params)
-      flash[:notice] = ["Note was updated"]
+    @note = Note.find(params[:id])
+    if @note.update(update_params)
+      flash[:notice] = "Note was updated"
       redirect_to dashboard_path
     else
       flash[:notice] = @note.errors.full_messages
-      redirect_to notes_edit_path(id: note_id)
+      redirect_to edit_note_path(params[:id])
     end
   end
 
-  private 
+  private
 
-   def note_params
-      params.permit(:city, :"note_text", :temperature)
+    def create_params
+      params.permit(:city, :"note_text")
+    end
+
+   def update_params
+      params.require(:note).permit(:city, :"note_text", :temperature)
+   end
+
+   def check_ownership
+      if Note.find(params[:id]).user != current_user
+        flash[:notice] = "You don't have permission to perform this action"
+        current_user ? (return redirect_to authenticated_root_path) : (return redirect_to unauthenticated_root_path)
+      end
    end
 
 end

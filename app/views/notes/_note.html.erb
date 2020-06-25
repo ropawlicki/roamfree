@@ -3,6 +3,6 @@
   <%= note.city %>
   <%= note.note_text %>
   <%= note.temperature %>
-  <%= link_to 'Destroy', notes_delete_path(id: note.id), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= link_to 'Edit', notes_edit_path(id: note.id), method: :get %>
+  <%= link_to 'Destroy', delete_note_path(id: note.id), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to 'Edit', edit_note_path(id: note.id), method: :get %>
 </div>

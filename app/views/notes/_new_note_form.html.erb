@@ -1,4 +1,4 @@
-<%= form_with(url: notes_create_path, method: :post) do |f| %>
+<%= form_with(url: create_note_path, method: :post) do |f| %>
   <%= f.text_field :city, placeholder: "City" %>
   <%= f.text_area :note_text, placeholder: "How was it?" %>
   <%= f.submit %>
