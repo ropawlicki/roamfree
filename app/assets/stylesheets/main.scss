@@ -1,0 +1,49 @@
+// Place all the styles related to the Notes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url("https://fonts.googleapis.com/css?family=Pangolin");
+
+$primary: purple;
+
+ body {
+  font-family: "Pangolin";
+ }
+
+ .container {
+  max-width: 40%;
+  margin-top: 2%;
+} 
+
+ h2 {
+   color: white;
+   margin-bottom: 1%;
+ }
+
+ .dashboard-header {
+   margin-top: 3%;
+   margin-bottom: 3%;
+ }
+
+.form-group { 
+  margin-top: 1%;
+  margin-bottom: 1%;
+  }
+
+.note-box { 
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.row#note-header {
+  background-color: #F1A94E;
+  margin-bottom: 1%;
+
+  a {
+    color: black
+  }
+}
+
+
+
+

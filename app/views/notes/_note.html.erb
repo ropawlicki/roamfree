@@ -1,8 +1,21 @@
-<div>
-  <%= note.created_at.strftime("%d.%m.%Y") %>
-  <%= note.city %>
-  <%= note.note_text %>
-  <%= note.temperature %>
-  <%= link_to 'Destroy', delete_note_path(id: note.id), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= link_to 'Edit', edit_note_path(id: note.id), method: :get %>
+<div class="note-box">
+  <div class="row" id="note-header">
+    <div class="col-3 text-left">
+      <%= note.created_at.strftime("%d.%m.%Y") %>
+    </div>
+    <div class="col-6 text-left">
+      <%= note.city %>, <%= note.temperature %> 
+      <% unless note.temperature.nil? %>
+        <span>&#176;</span>
+      <% end %>
+    </div>
+    <div class="col-3 text-right">
+      <%= link_to 'Edit', edit_note_path(id: note.id), method: :get %> <%= link_to 'Destroy', delete_note_path(id: note.id), method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= note.note_text %>
+    </div>
+  </div>
 </div>

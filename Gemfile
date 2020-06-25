@@ -48,6 +48,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0'
   gem 'factory_bot_rails', '~> 5.2.0'
   gem 'faker', '~> 2.12.0'
+  gem 'bootstrap', '~> 4.0.0'
+  gem 'jquery-rails', '~> 4.3.3'
 end
 
 group :development do
