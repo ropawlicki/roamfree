@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+  devise :database_authenticatable, 
+         :registerable,:validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
   validates_presence_of :first_name
