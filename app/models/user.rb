@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
-  validates_presence_of :first_name 
+  validates_presence_of :first_name
   validates_presence_of :last_name
 
   def self.from_omniauth(access_token)
@@ -17,7 +17,7 @@ class User < ApplicationRecord
       email: data['email'],
       first_name: data['first_name'],
       last_name: data['last_name'],
-      password: Devise.friendly_token[0,20]
+      password: Devise.friendly_token[0, 20]
       )
     end
     user

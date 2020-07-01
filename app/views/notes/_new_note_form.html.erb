@@ -1,4 +1,4 @@
-<%= form_with(url: create_note_path, method: :post) do |f| %>
+<%= form_with(model: @new_note, url: create_note_path, method: :post) do |f| %>
   <div class="form-group">
     <%= f.text_field :city, placeholder: "City" %>
   </div>
@@ -6,6 +6,6 @@
     <%= f.text_area :note_text, cols: "50", rows: "6", placeholder: "How was it?" %>
   </div>
   <div class="form-group button">
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   </div>
 <% end %>

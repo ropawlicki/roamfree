@@ -14,5 +14,4 @@ class TemperatureFetch
     end
     temperature
   end
-
 end

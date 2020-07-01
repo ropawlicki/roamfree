@@ -1,27 +1,25 @@
 class NotesController < ApplicationController
-  before_action :check_ownership, except: [:dashboard, :create]
+  before_action :check_ownership, except: [:index, :create]
 
-  def dashboard
+  def index
     @notes = current_user.notes.order(created_at: :desc)
+    @new_note = Note.new
   end
 
   def create
-    @note = current_user.notes.new(create_params)
-    if @note.valid?
-      @note.temperature = TemperatureFetch.call(@note.city)
-      if @note.temperature.nil?
-        flash[:notice] = "Couldn't get temperature for your location, you can set it by editing the note."
-      end
-      @note.save!
+    @note = current_user.notes.new(note_params)
+    if @note.save
+      @note.update(temperature: TemperatureFetch.call(@note.city))
+      flash[:notice] = "Couldn't get temperature for your location, set it with edit" if @note.temperature.nil?
     else
       flash[:notice] = @note.errors.full_messages
     end
-    redirect_to dashboard_path
+    redirect_to index_path
   end
 
   def delete
-    note = Note.destroy(params[:id])
-    redirect_to dashboard_path
+    Note.destroy(params[:id])
+    redirect_to index_path
   end
 
   def edit
@@ -30,30 +28,20 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    if @note.update(update_params)
-      flash[:notice] = "Note was updated"
-      redirect_to dashboard_path
+    if @note.update(note_params)
+      redirect_to index_path, notice: 'Note was updated'
     else
-      flash[:notice] = @note.errors.full_messages
-      redirect_to edit_note_path(params[:id])
+      redirect_to edit_note_path(params[:id]), notice: @note.errors.full_messages
     end
   end
 
   private
 
-    def create_params
-      params.permit(:city, :"note_text")
-    end
+  def note_params
+    params.require(:note).permit(:city, :note_text, :temperature)
+  end
 
-   def update_params
-      params.require(:note).permit(:city, :"note_text", :temperature)
-   end
-
-   def check_ownership
-      if Note.find(params[:id]).user != current_user
-        flash[:notice] = "You don't have permission to perform this action"
-        current_user ? (return redirect_to authenticated_root_path) : (return redirect_to unauthenticated_root_path)
-      end
-   end
-
+  def check_ownership
+    redirect_to authenticated_root_path if Note.find(params[:id]).user != current_user
+  end
 end

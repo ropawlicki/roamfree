@@ -44,6 +44,11 @@ RSpec.describe NotesController, type: :controller do
         delete :delete, params: { id: @note.id.to_s }, as: :json
         expect(Note.count).to eq(1)
       end
+
+      it "to unsigned users" do
+        delete :delete, params: { id: @note.id.to_s }, as: :json
+        expect(Note.count).to eq(1)
+      end
     end
   end
 end

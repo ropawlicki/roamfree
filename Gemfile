@@ -36,19 +36,19 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bootstrap', '~> 4.0.0'
 gem 'devise', '~> 4.7.2'
+gem 'figaro', '~> 1.2.0'
+gem 'httparty', '~> 0.17.3'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
-gem 'httparty', '~> 0.17.3'
-gem 'figaro', '~> 1.2.0'
-gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails', '~> 4.3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 4.0.0'
   gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'rspec-rails', '~> 4.0.0'
   gem 'faker', '~> 2.12.0'
 end
 
