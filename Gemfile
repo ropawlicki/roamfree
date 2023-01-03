@@ -39,7 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.0.0'
 gem 'devise', '~> 4.7.2'
 gem 'figaro', '~> 1.2.0'
-gem 'httparty', '~> 0.17.3'
+gem 'httparty', '~> 0.21.0'
 gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'jquery-rails', '~> 4.3.3'
